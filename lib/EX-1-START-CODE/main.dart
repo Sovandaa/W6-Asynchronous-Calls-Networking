@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:w6_practices_hw/EX-1-START-CODE/provider/courses_provider.dart';
+import 'package:w6_practices_hw/EX-1-START-CODE/repository/courses_mock_repository.dart';
 
 import 'screens/course_list_screen.dart';
 
@@ -12,10 +15,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return ChangeNotifierProvider(
+      create: (context) => CoursesProvider(repository: CoursesMockRepository()),
 
-      home: CourseListScreen(),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: CourseListScreen(),
+      ),
     );
   }
 }
